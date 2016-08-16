@@ -1,0 +1,25 @@
+{
+  "name": "node-test",
+  "version": "1.0.0",
+  "description": "to learn nodejs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glgt3737/node-test.git"
+  },
+  "author": "GeTing",
+  "dependencies": {
+    "body": "^5.1.0",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "lodash": "^4.15.0",
+    "moment": "^2.14.1",
+    "mysql": "^2.11.1",
+    "request": "^2.74.0",
+    "sequelize": "^3.24.0"
+  }
+}

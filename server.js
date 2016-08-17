@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var path = require('path');
 var router = require('./router');
+var config = require('./config').server;
 
 var app = express();
 
@@ -14,6 +15,6 @@ app.use(cookieParser());
 
 router(app);
 
-app.listen(8080, () => {
-  console.log('node-test listen at port 8080');
+app.listen(config.port, () => {
+  console.log('node-test listen at port ' + config.port);
 });

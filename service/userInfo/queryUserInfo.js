@@ -1,6 +1,6 @@
 var UserInfo = require('../../database/main_db').UserInfo;
 var User = require('../../database/main_db').User;
-
+//test
 module.exports = (req, res) => {
   UserInfo.findAll({ include: [{
     model: User

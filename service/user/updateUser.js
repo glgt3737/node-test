@@ -5,12 +5,13 @@ const resultJson = require('../../utils/resultJson');
 module.exports = (req, res) => {
   User.update(req.body, {
     where: {
-      user_id: req.params.id
-    }
+      id: req.params.id
+    },
+    fields: ['password']
   })
     .then(() => {
       User.findById(req.params.id)
-        .then(result => res.send(resultJson(0, paramsFilter.user(result.dataValues))))
+        .then(result => res.send(resultJson(0, paramsFilter.user(result.get({ plain: true })))))
         .catch(err => res.status(500).send(err));
     })
     .catch(err => res.status(500).send(err));

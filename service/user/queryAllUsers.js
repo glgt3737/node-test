@@ -1,14 +1,19 @@
 const User = require('../../database/main_db').User;
-var Task = require('../../database/main_db').Task;
-const USER_OUT = require('../../utils/paramsFilter').USER_OUT;
+const UserInfo = require('../../database/main_db').UserInfo;
+const Task = require('../../database/main_db').Task;
+const Project = require('../../database/main_db').Project;
 
 module.exports = (req, res) => {
   User.findAll({
-    attributes: USER_OUT,
     include: [{
+      model: UserInfo
+    }, {
       model: Task,
-      as: 'tasks',
-      attributes: ['id', 'task_name']
+      as: 'tasks'
+    }, {
+      model: Project,
+      as: 'projects',
+      attributes: ['id', 'project_name']
     }]
   })
     .then(result => res.send(result))

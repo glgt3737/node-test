@@ -1,7 +1,7 @@
-var Task = require('../../database/main_db').Task;
+var UserInfo = require('../../database/main_db').UserInfo;
 
 module.exports = (req, res) => {
-  Task.destroy({ where: { id: req.params.id } })
+  UserInfo.create(req.body)
     .then(result => res.send(result))
     .catch(err => res.status(500).send(err))
 };

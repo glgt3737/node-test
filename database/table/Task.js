@@ -8,5 +8,13 @@ module.exports = (sequelize, DataTypes) => sequelize.define('task', {
   task_name: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  task_status: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+    validate: {
+      isIn: [[ true, false ]]
+    }
   }
 });

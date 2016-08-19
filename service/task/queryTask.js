@@ -5,7 +5,7 @@ module.exports = (req, res) => {
   Task.findAll({ include: [{
     model: User,
     as: 'user_detail',
-    attributes: ['username', 'nick', 'email', 'sex', 'birthday']
+    attributes: ['username']
   }]
   })
     .then(result => res.send(result))

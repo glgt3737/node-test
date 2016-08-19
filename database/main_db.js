@@ -26,6 +26,8 @@ sequelize.authenticate()
 .catch(err => console.log('Unable to connect to the database:', err));
 
 var User = sequelize.import('./table/User.js');
+var Post = sequelize.import('./table/Post.js');
+var Reply = sequelize.import('./table/Reply.js');
 var Task = sequelize.import('./table/Task.js');
 var UserInfo = sequelize.import('./table/UserInfo.js');
 var Project = sequelize.import('./table/Project.js');
@@ -40,6 +42,18 @@ User.hasOne(UserInfo);
 User.belongsToMany(Project, { as: 'projects', through: UserProject });
 Project.belongsToMany(User, { as: 'workers',through: UserProject });
 
+
+/**
+ * 帖子为例，关联关系练习
+ */
+User.hasMany(Post, { foreignKey: 'user_id', as: 'topics' });
+User.hasMany(Reply, { foreignKey: 'user_id', as: 'replies' });
+Post.belongsTo(User, { foreignKey: 'user_id', as: 'create_user' });
+Post.hasMany(Reply, { foreignKey: 'post_id', as: 'replies' });
+Reply.belongsTo(User, { foreignKey: 'user_id', as: 'create_user' });
+
+
+
 //{force: true}
 sequelize.sync();
 
@@ -48,5 +62,7 @@ module.exports = {
   Task,
   UserInfo,
   Project,
-  UserProject
+  UserProject,
+  Post,
+  Reply
 };

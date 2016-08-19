@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const loginFilter = require('./utils/loginFilter');
 
 module.exports = (app) => {
 
@@ -8,8 +9,10 @@ module.exports = (app) => {
   router.delete('/users/:id', require('./service/user/deleteUser'));
   
   router.post('/tasks', require('./service/task/addTask'));
+  router.post('/bulkTasks', require('./service/task/bulkAddTasks'));
   router.get('/tasks', require('./service/task/queryTask'));
   router.delete('/tasks/:id', require('./service/task/deleteTask'));
+  router.delete('/bulkTasks', require('./service/task/bulkDelTasks'));
 
   router.post('/userInfo', require('./service/userInfo/addUserInfo'));
   router.get('/userInfo', require('./service/userInfo/queryUserInfo'));
@@ -20,5 +23,11 @@ module.exports = (app) => {
 
   router.post('/addUserToProject', require('./service/user/addUserToProject'));
 
-  app.use('/', router);
+  router.post('/post', require('./service/post/addPost'));
+  router.get('/post', require('./service/post/queryPost'));
+  router.post('/reply', require('./service/reply/addReply'));
+
+  app.post('/login', require('./service/login/login'));
+  app.use('/', loginFilter, router);
+
 };

@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var path = require('path');
 var router = require('./router');
 var config = require('./config').server;
@@ -11,7 +12,12 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser('An'));
+app.use(session({
+  secret: 'an',
+  resave: false,
+  saveUninitialized: true
+}));
 
 router(app);
 

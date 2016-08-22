@@ -1,6 +1,6 @@
 var _ = require('lodash');
-const USER_IN = ['username', 'password', 'nick', 'email', 'sex', 'birthday'];
-const USER_OUT = ['user_id', 'username', 'nick', 'email', 'sex', 'birthday'];
+const USER_IN = ['username', 'password'];
+const USER_OUT = ['id', 'username'];
 
 const paramsFilter = (obj, list) => {
   var temp_obj = {};
@@ -15,11 +15,7 @@ const paramsFilter = (obj, list) => {
 };
 
 module.exports = {
-  in: {
-    user: (obj) => paramsFilter(obj, USER_IN)
-  },
-  out: {
-    user: (obj) => paramsFilter(obj, USER_OUT)
-  },
+  user: (obj) => paramsFilter(obj, USER_OUT),
+  USER_IN,
   USER_OUT
 };

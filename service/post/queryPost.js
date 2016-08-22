@@ -5,19 +5,16 @@ var User = require('../../database/main_db').User;
 module.exports = (req, res) => {
   Post.findAll({ include: [{
     model: User,
-    as: 'create_user',
-    attributes: ['username']
+    as: 'create_user'
   }, {
     model: Reply,
     as: 'replies',
-    attributes: ['content'],
     include: [{
       model: User,
-      as: 'create_user',
-      attributes: ['username']
+      as: 'create_user'
     }]
   }]
   })
-    .then(result => res.send(result))
+    .then(result => res.send({status: 0, response: result}))
     .catch(err => res.status(500).send(err))
 };

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const noLoginRouter = require('express').Router();
 const loginFilter = require('./utils/loginFilter');
 
 module.exports = (app) => {
@@ -24,10 +25,13 @@ module.exports = (app) => {
   router.post('/addUserToProject', require('./service/user/addUserToProject'));
 
   router.post('/post', require('./service/post/addPost'));
-  router.get('/post', require('./service/post/queryPost'));
   router.post('/reply', require('./service/reply/addReply'));
 
-  app.post('/login', require('./service/login/login'));
+  noLoginRouter.post('/login', require('./service/login/login'));
+  noLoginRouter.post('/logout', require('./service/login/logout'));
+  noLoginRouter.get('/post', require('./service/post/queryPost'));
+
+  app.use('/', noLoginRouter);
   app.use('/', loginFilter, router);
 
 };

@@ -25,13 +25,13 @@ sequelize.authenticate()
 .then(err => console.log('Connection has been established successfully'))
 .catch(err => console.log('Unable to connect to the database:', err));
 
-var User = sequelize.import('./table/User.js');
-var Post = sequelize.import('./table/Post.js');
-var Reply = sequelize.import('./table/Reply.js');
-var Task = sequelize.import('./table/Task.js');
-var UserInfo = sequelize.import('./table/UserInfo.js');
-var Project = sequelize.import('./table/Project.js');
-var UserProject = sequelize.import('./table/UserProject.js');
+var User = sequelize.import('./models/User.js');
+var Post = sequelize.import('./models/Post.js');
+var Reply = sequelize.import('./models/Reply.js');
+var Task = sequelize.import('./models/Task.js');
+var UserInfo = sequelize.import('./models/UserInfo.js');
+var Project = sequelize.import('./models/Project.js');
+var UserProject = sequelize.import('./models/UserProject.js');
 
 Task.belongsTo(User, { foreignKey: 'user_id', as: 'user_detail' });
 User.hasMany(Task, { foreignKey: 'user_id', as: 'tasks' });

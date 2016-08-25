@@ -30,6 +30,8 @@ module.exports = (app) => {
   noLoginRouter.post('/login', require('./service/login/login'));
   noLoginRouter.post('/logout', require('./service/login/logout'));
   noLoginRouter.get('/post', require('./service/post/queryPost'));
+  
+  noLoginRouter.get('/test', require('./test/test'));
 
   app.use('/', noLoginRouter);
   app.use('/', loginFilter, router);

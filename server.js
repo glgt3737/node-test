@@ -21,6 +21,8 @@ app.use(session({
 
 router(app);
 
-app.listen(config.port, () => {
+app.listen(process.env.PORT || config.port, () => {
   console.log('node-test listen at port ' + config.port);
 });
+
+module.exports = app;

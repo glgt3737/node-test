@@ -3,7 +3,7 @@ module.exports = {
     port: 8081
   },
   main_db: {
-    host: '172.16.5.199',
+    host: 'localhost',
     database: 'node_test',
     user: 'root',
     password: '123456'

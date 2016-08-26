@@ -1,6 +1,7 @@
 var Sequelize = require('sequelize');
+var config = require('../config');
 
-var sequelize = new Sequelize(process.env.DATABASE_URL, {
+var sequelize = new Sequelize(process.env.DATABASE_URL || config.DEV, {
   pool: {
     max: 10,
     min: 0,

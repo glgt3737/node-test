@@ -4,6 +4,11 @@ module.exports = (response, status) => {
       status,
       response
     }
+  }else if(status){
+    return {
+      status,
+      error: response
+    }
   }else {
     return {
       error: response

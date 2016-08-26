@@ -2,10 +2,5 @@ module.exports = {
   server: {
     port: 8081
   },
-  main_db: {
-    host: '172.16.5.199',
-    database: 'node_test',
-    user: 'root',
-    password: '123456'
-  }
+  DEV: 'mysql://root:123456@localhost:3306/node_test'
 };

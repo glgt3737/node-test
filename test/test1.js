@@ -1,5 +1,5 @@
 var app = require('../server');
-var request = require('supertest').agent(app);
+var request = require('supertest').agent(app);  //agent测试保持session(解决登录过滤用)
 var should = require('should');
 
 //var userCookie;

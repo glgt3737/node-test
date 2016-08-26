@@ -1,16 +1,13 @@
-const fibonacci = (n) => {
-  if(typeof n !== 'number') throw new Error('n should be a Number');
-  if(n < 0) throw new Error('n should >= 0');
-  if(n > 10) throw new Error('n should <= 10');
-  if(n === 0) return 0;
-  if(n === 1) return 1;
-  return fibonacci(n-1) + fibonacci(n-2);
-};
+var pg = require('pg');
 
 module.exports = (req, res) => {
-  var n = parseInt(req.query.n);
-  console.log('fibonacci(' + n + ') is ' + fibonacci(n));
-  res.send('success');
-};
+  pg.defaults.ssl = true;
+  pg.connect(process.env.DATABASE_URL, (err, client) => {
+    if(err) throw err;
+    console.log('Connected to postgres! Getting schemas...');
 
-module.exports.fibonacci = fibonacci;
+    client
+      .query('select table_schema, table_name from information_schema.tables')
+      .on('row', row => res.send(JSON.stringify(row)));
+  });
+};
